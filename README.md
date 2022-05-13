@@ -1,6 +1,6 @@
 # EL_MATE_DEL_LOCO
 
-Nuestro trabajo consiste en la realización de un tablero de ajedrez, en el cual sea posible jugar una partida entre dos jugadores.
+Nuestro trabajo consiste en un juego de tres laberintos, de distintas dificultades entre las que el jugador podrá elegir.
 
 ## Integrantes del equipo
 
@@ -11,8 +11,7 @@ Nuestro trabajo consiste en la realización de un tablero de ajedrez, en el cual
 ## Objetivos del trabajo
 
 
-* Crear un juego de ajedrez con una librería propia de funciones personalizada.
-* La partida será para dos jugadores.
-* Cada ficha del tablero tendrá unos movimientos predeterminados según la figura que sea
-* Cuando una ficha sea comida esta desaparecerá del tablero.
-* Al acabar la partida se indicará el ganador.
+* Crear varios laberintos con un incremento en su dificultad.
+* La partida será para un jugador.
+* El jugador no podra ver el laberinto al completo añadiendo asi mas dificultad al juego
+
