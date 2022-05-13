@@ -6,8 +6,7 @@ Nuestro trabajo consiste en un juego de tres laberintos, de distintas dificultad
 
 * Íñigo Azqueta [(inigoazqueta)](https://github.com/inigoazqueta)
 * Javier de la Hoz [(Javierdelahoz4)](https:/github.com/Javierdelahoz4)
-* Rodrigo de Santos [(rodridesantos)](https:/github.com/rodridesantos)
-* Hugo García Redondo [(hugoogr)](https://github.com/hugoogr)            
+*          
 ## Objetivos del trabajo
 
 
