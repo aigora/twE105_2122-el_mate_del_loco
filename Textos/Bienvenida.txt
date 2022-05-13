@@ -1,1 +1,16 @@
-
+                   ¡¡¡¡BIENVENIDOS AL LABERINTO DONDE TE VOLVERAS LOCO!!!!
+                            
+                 ¡Encuentra la salida si puedes! ¿Estas listo para intentarlo?   
+                
+                
+                                         MENU
+              
+                Elige la opcion que desees introduciendo su numero correpondiente
+                                                                  
+                  1) Empezar partida
+                
+                  2) Como jugar
+                
+                  3) Salir
+ 
+               
