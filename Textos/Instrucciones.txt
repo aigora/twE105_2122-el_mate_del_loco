@@ -1,0 +1,9 @@
+                                  INSTRUCCIONES DEL JUEGO DEL LABERINTO
+                                  
+El juego trata de encontrar la salida del laberinto.
+
+El juego te pedira que introduzcas unas coordenadas desde las que empezaras a buscar la salida
+
+Los movimientos se harán mediante las teclas A (izquierda), S (abajo), W (arriba), D (derecha)
+
+A medida que avances por el laberinto, este te ofrecera distintas ayudas para encontrar la salida
