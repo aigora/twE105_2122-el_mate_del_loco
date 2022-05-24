@@ -30,9 +30,6 @@ int main ()
     {
      case '1':
       printf("Has elegido Jugar,¡mucha suerte!\n\n");
-      printf("Elige el nivel:\n1. Normal\n2. Dificil\n");
-      printf("Introduce el número que desees:\t");
-      scanf(" %c",&nivel);
       break;
 
      case '2':
