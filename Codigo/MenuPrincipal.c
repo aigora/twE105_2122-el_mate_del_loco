@@ -1,28 +1,55 @@
 #include <stdio.h>
 int main ()
 {
-  FILE *fbienvenida;
-  int i,opcion;
+  FILE *fbienvenida,*finstrucciones;
+  int i;
+  char opcion,c;
 
-  fbienvenida = fopen("Bienvenida.txt", "r");
-  if (fbienvenida == NULL) {
+  fbienvenida = fopen("Archivos/Bienvenida.txt", "r");
+
+  if (fbienvenida == NULL) 
+  {
     printf("Ha habido un problema, por favor intentelo de nuevo\n");
     return -1;
   }
-
+  else
+  {
+    while (fscanf(fbienvenida,"%c",&c) != EOF)
+    {
+      printf("%c",c);
+    }
+  }
+  fclose(fbienvenida);
 
  do
  {
-    scanf(" %i",&opcion);
+    scanf(" %c",&opcion);
     
     switch (opcion)
     {
      case '1':
-      printf("Has elegido Jugar,¿mucha suerte!\n");
+      printf("Has elegido Jugar,¡mucha suerte!\n");
       break;
 
      case '2':
       printf("Has elegido ver las instrucciones\n");
+
+      finstrucciones = fopen("Archivos/Instrucciones.txt", "r");
+
+      if (finstrucciones == NULL) 
+       {
+         printf("Ha habido un problema, por favor intentelo de nuevo\n");
+          return -1;
+       }
+       else
+         {
+             while (fscanf(finstrucciones,"%c",&c) != EOF)
+           {
+              printf("%c",c);
+           }
+         }
+        fclose(fbienvenida);
+      printf("Introduce '1' para jugar o '3' para salir del programa\n\n");
       break;
 
      case '3':
