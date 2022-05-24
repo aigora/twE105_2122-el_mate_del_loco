@@ -4,4 +4,8 @@ El juego trata de conseguir salir de la habitacion resloviendo las distintas pru
 
 A medida que resuelvas las preguntas obtendras puntos
 
+Para seleccionar la prueba hay que introducir la letra correspondiente a la misma, indicada en el mapa
+
+Cada prueba solo se podra realizar una vez
+
 Cuando consigas un minimo de puntos necesarios podras salir una vez introduzcas la clave final
