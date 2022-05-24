@@ -1,6 +1,6 @@
 # EL_MATE_DEL_LOCO
 
-Nuestro trabajo consiste en un juego de tres laberintos, de distintas dificultades entre las que el jugador podrá elegir.
+Nuestro trabajo consiste en un scape room, en el que el jugador se encontrara con distintas pruebas que tendra que resolver para poder salir.
 
 ## Integrantes del equipo
 
@@ -10,7 +10,7 @@ Nuestro trabajo consiste en un juego de tres laberintos, de distintas dificultad
 ## Objetivos del trabajo
 
 
-* Crear varios laberintos con un incremento en su dificultad.
+* Crear varias pruebas.
 * La partida será para un jugador.
-* El jugador no podra ver el laberinto al completo añadiendo asi mas dificultad al juego
+* El jugador acumulara puntos por cada prueba resuelta correctamente que necesitara para poder salir
 
