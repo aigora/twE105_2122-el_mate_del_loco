@@ -3,7 +3,7 @@ int main ()
 {
   FILE *fbienvenida,*finstrucciones;
   int i;
-  char opcion,c;
+  char opcion,c,nivel;
 
   fbienvenida = fopen("Archivos/Bienvenida.txt", "r");
 
@@ -23,12 +23,16 @@ int main ()
 
  do
  {
+    printf("Elige la opción que desees del menu principal:");
     scanf(" %c",&opcion);
     
     switch (opcion)
     {
      case '1':
-      printf("Has elegido Jugar,¡mucha suerte!\n");
+      printf("Has elegido Jugar,¡mucha suerte!\n\n");
+      printf("Elige el nivel:\n1. Normal\n2. Dificil\n");
+      printf("Introduce el número que desees:\t");
+      scanf(" %c",&nivel);
       break;
 
      case '2':
