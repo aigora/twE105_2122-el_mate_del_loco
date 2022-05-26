@@ -1,0 +1,6 @@
+    
+  Has encontrado el cofre secreto del capitán
+       Elige de que botella beber
+       a- Ron del caribe 
+       b- Frasco de agua de manantial
+       
