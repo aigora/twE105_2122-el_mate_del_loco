@@ -2,7 +2,7 @@
                                   
 El juego trata de conseguir salir de la habitacion resloviendo las distintas pruebas.
 
-A medida que resuelvas las preguntas obtendras puntos
+A medida que resuelvas las preguntas obtendras puntos, necesitaras más de 300 puntos para salir
 
 Para seleccionar la prueba hay que introducir la letra correspondiente a la misma, indicada en el mapa
 

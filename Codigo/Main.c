@@ -1,15 +1,31 @@
 #include <stdio.h>
+#include "Escape.h"
+#include "Pruebas.h"
+
+typedef struct 
+{
+  int dia,mes,anno;
+}fecha;
+
+typedef struct 
+{
+  char nombre[30];
+  int puntuacion;
+  fecha record;
+}Datos;
+
 int main ()
 {
   FILE *fbienvenida,*finstrucciones;
   int i;
   char opcion,c,nivel;
+  Datos player;
 
   fbienvenida = fopen("Archivos/Bienvenida.txt", "r");
 
   if (fbienvenida == NULL) 
   {
-    printf("Ha habido un problema, por favor intentelo de nuevo\n");
+    printf("Error al abrir el fichero.\n");
     return -1;
   }
   else
@@ -30,6 +46,13 @@ int main ()
     {
      case '1':
       printf("Has elegido Jugar,¡mucha suerte!\n\n");
+      printf("Introduce tu nombre: ");
+      scanf("%29s[^\n]", player.nombre);
+      printf("\nIntroduce la fecha de hoy en formato 'dia mes año': ");
+      scanf(" %d %d %d", &player.record.dia, &player.record.mes, &player.record.anno);
+      printf("\n");
+      /* Funcion Juego */
+      printf("Introduce '1' para jugar otra vez, '2' para las instrucciones o '3' para salir del programa\n\n");
       break;
 
      case '2':
