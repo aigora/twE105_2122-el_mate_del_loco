@@ -1,5 +1,20 @@
 #include "Pruebas.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
+
+typedef struct
+{
+  char preguntas[200];
+  int soluciones;
+} calculo;
+
+typedef struct
+{
+  char preguntas[200];
+  char opciones[150];
+  char soluciones;
+} cuestionario;
 
 //Funciones de las pruebas
   // 'M' Mesa (linea 4-65)
@@ -261,3 +276,165 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
     } while (probar == '1' && intentos < 3 && pass == 0);
     return puntos;
 }
+
+int Baul( int*pass, int B)
+{
+    int puntos =0, j;
+    FILE *fcofre;
+    char c, opcion;
+    B=0;
+    fcofre = fopen("Cofre.txt","r");
+    if (fcofre == NULL)
+    {
+        printf("Error al abrir el archivo.\n");
+    }
+    else
+    {
+        printf("\n\n");
+        while (fscanf(fcofre,"%c",&c) !=EOF)
+        {
+            printf("%c",c);
+        }
+        printf("\n");
+    }
+    fclose(fcofre);
+
+    do
+    {
+        printf("elige la bebida: ");
+        scanf(" %c", &opcion);
+        if(opcion!= 'a' && opcion!= 'b')
+        {
+            printf("\nEsa opcion no existe\n\n");
+        }
+
+    } while (opcion != 'a' && opcion != 'b');
+
+    switch (opcion)
+    {
+        case 'a':
+            if (B==0)//con esta variable nos aseguramos que solo pueda escoger el ron una vez y no se sume puntos de mas
+            {
+            printf ("\n Te has atrevido a beberte el ron del capitan, te has ganado 30 puntos por valiente. \n");
+            puntos=30;
+            pass=1;
+            printf("\n+30 puntos\n\n");
+            }
+            else
+            printf("Eres un borracho, no busques mas ron que ya te lo has bebido todo\n");
+          break;
+
+        case 'b':
+            printf("\n¡Un pirata no bebe agua nunca!¡Que verguenza que vayas en este barco!\n");
+            puntos=-5; //cada vez que elija el agua se le restan puntos, la podra elegir todas las veces que quiera
+            printf("\n-5 puntos\n\n");
+          break;
+        default:
+         break;
+
+    }
+    return puntos;
+}
+
+int Test_pirata ()
+{
+    cuestionario vector[N];
+  FILE *fpreguntas,*fopciones,*fsoluciones;
+  int i = 0,x=0;
+  char n;
+
+  printf("\n\t\t\t\tTEST DEL PIRATA\n");
+  printf("\t\tCADA PREGUTA TIENE TRES RESPUESTAS POSIBLES\n\tTODAS LAS RESPUESTAS DEBERAN ESTAR EN MINUSCULA PARA SER VALIDAS\n\n");
+
+  fsoluciones = fopen("Respuestas_test_pirata.txt","r");
+  if (fsoluciones == NULL)
+   {
+       printf("Error al abrir el fichero.\n");
+    }
+  fpreguntas = fopen("Preguntas_test_pirata.txt", "r");
+  if (fpreguntas == NULL)
+   {
+       printf("Error al abrir el fichero.\n");
+    }
+  fopciones = fopen("Opciones_test_pirata.txt", "r");
+  if (fopciones == NULL)
+   {
+       printf("Error al abrir el fichero.\n");
+    }
+
+  while(fscanf(fpreguntas, "%[^\n]\n", vector[i].preguntas) !=EOF && fscanf(fopciones,"%[^\n]\n",vector[i].opciones) != EOF && fscanf(fsoluciones,"%[^\n]\n",&vector[i].soluciones) !=EOF)
+    {
+      printf("%s\n\n%s\n\n",vector[i].preguntas,vector[i].opciones);
+
+      scanf(" %c",&n);
+      if (n==vector[i].soluciones)
+        x+=5;
+
+       i++;
+    }
+
+  fclose(fpreguntas);
+  fclose(fopciones);
+  fclose(fsoluciones);
+    return x;
+}
+
+int Test_calculo ()
+{
+
+
+  cuestionario vector[N];
+  FILE *fpreguntas,*fsoluciones;
+  int i = 0,x,n;
+
+
+  printf("\t\t\tTEST CALCULO\n");
+  x=0;
+   fpreguntas = fopen("Preguntas_test_calculo.txt", "r");
+  if (fpreguntas == NULL)
+  {
+    printf("Error al abrir el fichero.\n");
+  }
+   fsoluciones = fopen("Respuestas_test_calculo.txt","r");
+  if (fsoluciones == NULL)
+  {
+    printf("Error al abrir el fichero.\n");
+  }
+  while(fscanf(fpreguntas, "%[^\n]\n", vector[i].preguntas) !=EOF && (fscanf(fsoluciones,"%d\n",&vector[i].soluciones) !=EOF))
+    {
+      printf("%s\n\n",vector[i].preguntas);
+
+      scanf(" %d",&n);
+      if (n==vector[i].soluciones)
+         x+=5;// por cada pregunta acertada obtiene 5 puntos
+
+       i++;
+    }
+
+  fclose(fpreguntas);
+  fclose(fsoluciones);
+    return x;
+}
+
+int Rand(int *pass)
+{
+    int num, num2,puntos;
+
+        srand(time(NULL));
+        num = rand() % 30 +1 ;
+
+        printf("\n Introduce numero: ");
+        scanf("%d",&num2);
+
+        while(num!=num2)
+        {
+
+            printf("\n Introduce numero: ");
+            scanf("%d",&num2);
+        }
+       
+        printf("\n Has acertado! \n");
+
+
+    return puntos;
+  }
