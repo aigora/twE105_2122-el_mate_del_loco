@@ -2,17 +2,6 @@
 #include "Escape.h"
 #include "Pruebas.h"
 
-typedef struct 
-{
-  int dia,mes,anno;
-}fecha;
-
-typedef struct 
-{
-  char nombre[30];
-  int puntuacion;
-  fecha record;
-}Datos;
 
 int main ()
 {

@@ -197,7 +197,7 @@ int Ahorcado(int *pass)
       
    } while (fallos < 8 && fin == 0);
   
-  
+   *pass+=1;
   return puntos;
 }
 
@@ -266,21 +266,12 @@ int CajaFuerte(int intentos,int *try, int *pass)//uso el puntero intentos para q
                }
             
                printf("\n+%d puntos\n\n",puntos);
-<<<<<<< Updated upstream
               *pass+=1;
-=======
-               *pass+=1;
->>>>>>> Stashed changes
             }
             if (intentos == 3 && error == 1)
              {
-<<<<<<< Updated upstream
                 printf("\nUps Parece que se ha cerrado para siempre, eso te pasa por jugartela y no buscar bien por el camarote\n\n");
                *pass+=1;
-=======
-                printf("\n\nUps Parece que se ha cerrado para siempre, eso te pasa por jugartela y no buscar bien por el camarote\n\n");
-                *pass+=1;
->>>>>>> Stashed changes
              }
         }
         else
@@ -291,7 +282,7 @@ int CajaFuerte(int intentos,int *try, int *pass)//uso el puntero intentos para q
     return puntos;
 }
 
-int Baul( int*pass, int B)
+int Baul(int *pass, int B)
 {
     int puntos =0;
     FILE *fcofre;
@@ -330,7 +321,7 @@ int Baul( int*pass, int B)
             {
             printf ("\n Te has atrevido a beberte el ron del capitan, te has ganado 30 puntos por valiente. \n");
             puntos=30;
-            pass=1;
+            *pass=1;
             printf("\n+30 puntos\n\n");
             }
             else
@@ -423,7 +414,7 @@ int Test_calculo (int *pass)
 
        i++;
     }
-   pass=1;
+   *pass+=1;
   fclose(fpreguntas);
   fclose(fsoluciones);
     return x;

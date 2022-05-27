@@ -1,3 +1,14 @@
+typedef struct 
+{
+  int dia,mes,anno;
+}fecha;
+
+typedef struct 
+{
+  char nombre[30];
+  int puntuacion;
+  fecha data;
+}Datos;
 
 void juego();
 void GrabaDatos(Datos jugador);
