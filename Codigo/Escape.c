@@ -1,18 +1,8 @@
 #include "Escape.h"
 #include "Pruebas.h"
 #include <stdio.h>
+#include <string.h>
 
-typedef struct 
-{
-  int dia,mes,anno;
-}fecha;
-
-typedef struct 
-{
-  char nombre[30];
-  int puntuacion;
-  fecha data;
-}Datos;
 
 //Funciones del programa
   // Juego (linea 4-65)
@@ -30,14 +20,17 @@ void juego()
   int SumPoints=0,Pm,fin,Pb;//Pm (igual que Pb) sirve para controlar los puntos de la mesa y que solo se puedan conseguir 1 vez
   int PassB=0,PassC=0,PassH=0,PassR=0,PassP=0,PassM=0,PassD=0,TotalPass=0;//Para contar que se hacen todas las pruebas
   int B=0,C=0,H=0,R=0,P=0,M=0,D=4,intentosD=1,try=0;//Estas variables sirven para que solo se haga la prueba una vez
+  int level;
+
   Datos player;
-  
+
+   level = dificultad();
    printf("Introduce tu nombre: ");
    scanf("%29s[^\n]", player.nombre);
    printf("\nIntroduce la fecha de hoy en formato 'dia mes año': ");
    scanf(" %d %d %d", &player.data.dia, &player.data.mes, &player.data.anno);
    printf("\n");
-   //GrabaDatos(player);
+   GrabaDatos(player, level);
   do
   {
     imprime();
@@ -126,7 +119,7 @@ void juego()
     case 'P':
       if (P == 0)
       {
-        SumPoints += Test_pirata (PassD);
+        SumPoints += Test_pirata (&PassD);
         if (PassP == 1)
         {
           TotalPass++;
@@ -152,23 +145,31 @@ void juego()
        SumPoints += Pm;
         break;
     case 'S':
-      salir = Salida(SumPoints, TotalPass, &fin);//fin indicara el mensaje final del programa
+      salir = Salida(SumPoints, TotalPass, &fin, level);//fin indicara el mensaje final del programa
         break;
     default:
         break;
     }
 
   } while (salir == 0);
-  SumPoints = player.puntuacion;
-  //GrabaRecord(player);
+  SumPoints = player.puntuacion; //Pasa los puntos a la estructura para guardarlos en el fichero
+  GrabaRecord(player);
   final();
 
 }
 
-void GrabaDatos(Datos jugador)
+void GrabaDatos(Datos jugador, int nivel)
 {
   FILE *fGrabaDatos;
   
+   if (nivel == 1)
+   {
+       strcpy(jugador.dificultad, "Normal");
+      
+   }
+   else
+     strcpy(jugador.dificultad, "Dificil");
+
   fGrabaDatos = fopen("Archivos/Records.csv","a");
   //Abrimos el fichero en modo 'add' para que se guarden todas las partidas que se jueguen.
   if (fGrabaDatos == NULL)
@@ -177,7 +178,7 @@ void GrabaDatos(Datos jugador)
   }
   else
   {
-      fprintf("%s,%d,%i,%d,",jugador.nombre,jugador.data.dia,jugador.data.mes,jugador.data.anno);
+      fprintf(fGrabaDatos,"\n%s;%s;%d;%i;%d;",jugador.dificultad,jugador.nombre,jugador.data.dia,jugador.data.mes,jugador.data.anno);
   }
   fclose(fGrabaDatos);
 }
@@ -194,23 +195,29 @@ void GrabaRecord(Datos points)
   }
   else
   {
-      fprintf("%i\n",points.puntuacion);
+      fprintf(fGrabaRecord,"%i",points.puntuacion);
   }
   fclose(fGrabaRecord);
 }
 
-int Salida(int puntos, int n, int *end)
+int Salida(int puntos, int n, int *end, int dificultad)
 {
     int salida=0;
-  if (puntos > 300)
+    *end=0;
+  if (puntos > 300 && dificultad == 1)
   {
       salida=1;
-      end = 1;
+      *end+= 1;
+  }
+  else if (puntos > 400 && dificultad == 0)
+  {
+      salida=1;
+      *end = 1;
   }
   else if (puntos < 300 && n == 7)//En este caso el jugador no tiene los puntos suficientes para salir,
  {                                //pero ya ha realizado todas las pruebas, por lo que no puede conseguir más
       salida=1;
-      end = 2;
+      *end+= 2;
   }
   else
   {
@@ -227,7 +234,7 @@ void final()//Esta funcion te abre un fichero u otro en funcion de si has ganado
    int n=0;
   if (n==1)
   {
-      fenhorabuena = fopen("Enhorabuena.txt","r");
+      fenhorabuena = fopen("Archivos/Enhorabuena.txt","r");
    if (fenhorabuena == NULL)
    {
        printf("Error al abrir el fichero.\n");
@@ -245,7 +252,7 @@ void final()//Esta funcion te abre un fichero u otro en funcion de si has ganado
   }
  else if(n==2)
   {
-      fperder = fopen("Perder.txt","r");
+      fperder = fopen("Archivos/Perder.txt","r");
    if (fperder == NULL)
    {
        printf("Error al abrir el fichero.\n");
@@ -269,7 +276,7 @@ void imprime()// funcion que imprime el mapa de la habitacion
 {
     FILE *pf;
     char c;
-    pf = fopen("Room.txt","r");
+    pf = fopen("Archivos/Room.txt","r");
     if (pf== NULL)
 
     {
@@ -285,4 +292,27 @@ void imprime()// funcion que imprime el mapa de la habitacion
     }
     printf("\n");
     fclose(pf);
+}
+int dificultad() //Da la opcion de elegir el nivel de dificultad
+{
+  char d;
+  int s=0;
+  do
+  {
+    printf("¿En que dificultad quieres jugar?\n");
+    printf("1. Normal\n 2.Dificil\n");
+    printf("Elige la dificultad:\n");
+    scanf(" %c",&d);
+    if (d != '1' && d != '2')
+    {
+      printf("\nElección no valida, vuelve a intentarlo.\n");
+    }
+  } while (d != '1' && d != '2');
+  
+  if (d == '1')
+  {
+    s=1;
+  }
+
+  return s;
 }
