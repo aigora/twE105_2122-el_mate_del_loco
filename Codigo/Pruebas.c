@@ -32,7 +32,7 @@ int Mesa(int *pass,int M)//Uso este puntero para contar que el jugador vaya haci
    FILE *fMesa;
    char c,opcion;
    
-   fMesa = fopen("PruebaMesa.txt","r"); //Fichero para poder cambiar el contenido rapidamente y este más ordenado.
+   fMesa = fopen("Archivos/PruebaMesa.txt","r"); //Fichero para poder cambiar el contenido rapidamente y este más ordenado.
    if (fMesa == NULL)
    {
        printf("Error al abrir el fichero.\n");
@@ -287,7 +287,7 @@ int Baul(int *pass, int B)
     int puntos =0;
     FILE *fcofre;
     char c, opcion;
-    fcofre = fopen("Cofre.txt","r");
+    fcofre = fopen("Archivos/Cofre.txt","r");
     if (fcofre == NULL)
     {
         printf("Error al abrir el archivo.\n");
@@ -355,12 +355,12 @@ int Test_pirata (int *pass)
    {
        printf("Error al abrir el fichero.\n");
     }
-  fpreguntas = fopen("Preguntas_test_pirata.txt", "r");
+  fpreguntas = fopen("Archivos/Preguntas_test_pirata.txt", "r");
   if (fpreguntas == NULL)
    {
        printf("Error al abrir el fichero.\n");
     }
-  fopciones = fopen("Opciones_test_pirata.txt", "r");
+  fopciones = fopen("Archivos/Opciones_test_pirata.txt", "r");
   if (fopciones == NULL)
    {
        printf("Error al abrir el fichero.\n");
@@ -394,12 +394,12 @@ int Test_calculo (int *pass)
 
   printf("\t\t\tTEST CALCULO\n");
 
-   fpreguntas = fopen("Preguntas_test_calculo.txt", "r");
+   fpreguntas = fopen("Archivos/Preguntas_test_calculo.txt", "r");
   if (fpreguntas == NULL)
   {
     printf("Error al abrir el fichero.\n");
   }
-   fsoluciones = fopen("Respuestas_test_calculo.txt","r");
+   fsoluciones = fopen("Archivos/Respuestas_test_calculo.txt","r");
   if (fsoluciones == NULL)
   {
     printf("Error al abrir el fichero.\n");
