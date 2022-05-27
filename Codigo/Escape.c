@@ -6,12 +6,21 @@
 
 
 //Funciones del programa
-  // Juego (linea 4-65)
-  // GrabaDatos (linea 68-)
-  // GrabaRecord (linea )
-  // Salida (linea )
-  // Final (linea )
-  // Imprime (linea )
+  // Mesa (linea 24-81)
+  // Ahorcado (linea 83-197)
+  // CajaFuerte (linea 199-278)
+  // Baul (linea 280-336)
+  // Tes_pirata (linea 338-380)
+  // Test_calculo (linea 382-418)
+  // Rand (linea 420-470)
+  // GrabaDatos (linea 472-495)
+  // GrabaRecord (linea 497-512)
+  // Salida (linea 514-539)
+  // final (linea 541-583)
+  // imprime (linea 585-605)
+  // dificultad (linea 607-629)
+  // Juego (linea 631-777)
+  
  int Mesa(int *pass,int M)//Uso este puntero para contar que el jugador vaya haciendo todas las pruebas, asi sabremos si el jugador puede conseguir mas puntos
 {                  //o ya ha terminado el juego, al no tener este la posibilidad de conseguir una puntuación mejor.
    int puntos=0,j; 
@@ -458,7 +467,7 @@ do
     *pass+=1;
 
     return puntos;
-  }
+}
 
 void GrabaDatos(Datos jugador, int nivel)
 {
@@ -594,6 +603,7 @@ void imprime()// funcion que imprime el mapa de la habitacion
     printf("\n");
     fclose(pf);
 }
+
 int dificultad() //Da la opcion de elegir el nivel de dificultad
 {
   char d;
@@ -764,5 +774,4 @@ void juego()
   player.puntuacion = SumPoints; //Pasa los puntos a la estructura para guardarlos en el fichero
   GrabaRecord(player);
   final(fin);
-
 }
