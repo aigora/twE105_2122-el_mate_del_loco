@@ -1,4 +1,5 @@
 #include "Escape.h"
+#include "Pruebas.h"
 #include <stdio.h>
 
 typedef struct 
@@ -27,8 +28,8 @@ void juego()
   int salir = 0; //Definimos un booleano para que el bucle continue hasta el final del juego.
   char prueba;
   int SumPoints=0,Pm,fin;//Pm sirve para controlar los puntos de la mesa y que solo se puedan conseguir 1 vez
-  int PassN=0,PassC=0,PassH=0,PasR=0,PassP=0,PassM=0,PassD=0,TotalPass=0;//Para contar que se hacen todas las pruebas
-  int N=0,C=0,H=0,R=0,P=0,M=0,D=3,intentosD=0;//Estas variables sirven para que solo se haga la prueba una vez
+  int PassB=0,PassC=0,PassH=0,PasR=0,PassP=0,PassM=0,PassD=0,TotalPass=0;//Para contar que se hacen todas las pruebas
+  int B=0,C=0,H=0,R=0,P=0,M=0,D=3,intentosD=0;//Estas variables sirven para que solo se haga la prueba una vez
   Datos player;
   
    printf("Introduce tu nombre: ");
@@ -44,17 +45,17 @@ void juego()
     {
        printf("\nIntroduce la letra en MAYUSCULA de la prueba deseada: ");
        scanf(" %c",&prueba);
-       if (prueba != 'N' && prueba != 'C' && prueba != 'D' && prueba != 'H' && prueba != 'R' && prueba != 'P' && prueba != 'M' && prueba != 'S' )
+       if (prueba != 'B' && prueba != 'C' && prueba != 'D' && prueba != 'H' && prueba != 'R' && prueba != 'P' && prueba != 'M' && prueba != 'S' )
        {
            printf("Prueba no valida, intentalo otra vez\n");
        }
        //Se repite hasta que se introduzca una prueba valida.
-    } while (prueba != 'N' && prueba != 'C' && prueba != 'D' && prueba != 'H' && prueba != 'R' && prueba != 'P' && prueba != 'M' && prueba != 'S' ); 
+    } while (prueba != 'B' && prueba != 'C' && prueba != 'D' && prueba != 'H' && prueba != 'R' && prueba != 'P' && prueba != 'M' && prueba != 'S' ); 
 
     switch (prueba)
     {
-    case 'N':
-        /* Funcion Prueba Nevera */
+    case 'B':
+        /* Funcion Prueba Baul*/
         break;
     case 'C':
         /* Funcion Prueba Calculo */
@@ -167,4 +168,71 @@ int Salida(int puntos, int n, int *end)
     printf("Sigue investigando, el camarote del Capitan Jack Sparrow guarda más secretos\n");
   }
   return salida;
+}
+
+void final()//Esta funcion te abre un fichero u otro en funcion de si has ganado o perdido el juego
+{
+   FILE *fperder, *fenhorabuena;
+   char c;
+   int n=0;
+  if (n==1)
+  {
+      fenhorabuena = fopen("Enhorabuena.txt","r");
+   if (fenhorabuena == NULL)
+   {
+       printf("Error al abrir el fichero.\n");
+    }
+    else
+   {
+       printf("\n\n");
+       while (fscanf(fenhorabuena,"%c",&c) !=EOF)
+       {
+           printf("%c",c);
+       }
+       printf("\n");
+    }
+    fclose(fenhorabuena);
+  }
+ else if(n==2)
+  {
+      fperder = fopen("Perder.txt","r");
+   if (fperder == NULL)
+   {
+       printf("Error al abrir el fichero.\n");
+    }
+    else
+   {
+       printf("\n\n");
+       while (fscanf(fperder,"%c",&c) !=EOF)
+       {
+           printf("%c",c);
+       }
+       printf("\n");
+    }
+    fclose(fperder);
+  }
+ else
+    printf("Ha habido un error.\n");
+}
+
+void imprime()// funcion que imprime el mapa de la habitacion
+{
+    FILE *pf;
+    char c;
+    pf = fopen("Room.txt","r");
+    if (pf== NULL)
+
+    {
+        printf("Error al abrir el fichero.\n");
+    }
+    else
+    {
+        printf("\n\n");
+       while (fscanf(pf,"%c", &c) != EOF)
+       {
+            printf("%c",c);
+        }
+    }
+    printf("\n");
+    fclose(pf);
 }
