@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "Escape.h"
-#include "Pruebas.h"
+
 
 
 int main ()
@@ -9,11 +9,11 @@ int main ()
   int i;
   char opcion,c;
 
-  fbienvenida = fopen("Archivos/Bienvenida.txt", "r");
+  fbienvenida = fopen("Bienvenida.txt", "r");
 
   if (fbienvenida == NULL) 
   {
-    printf("Error al abrir el fichero.\n");
+    printf("Error al abrir el fichero.Bienvenida\n");
     return -1;
   }
   else
@@ -41,11 +41,11 @@ int main ()
      case '2':
       printf("Has elegido ver las instrucciones\n");
 
-      finstrucciones = fopen("Archivos/Instrucciones.txt", "r");
+      finstrucciones = fopen("Instrucciones.txt", "r");
 
       if (finstrucciones == NULL) 
        {
-         printf("Ha habido un problema, por favor intentelo de nuevo\n");
+         printf("Error al abrir el fichero.Instrucciones\n");
           return -1;
        }
        else
