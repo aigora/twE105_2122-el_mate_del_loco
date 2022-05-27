@@ -418,23 +418,52 @@ int Test_calculo ()
 
 int Rand(int *pass)
 {
-    int num, num2,puntos;
+      int adivinar,intentos=0, num, puntos=55;
+  char *end;
+  char test[100];
 
-        srand(time(NULL));
-        num = rand() % 30 +1 ;
+    srand(time(NULL));   
+    num =rand() %30+1;
+do
+{
+     do
+  {
+      printf("Adivina el numero: ");
+      scanf("%d",&adivinar);
+      if (!fgets(test,sizeof test, stdin)) //Uso fgets para que cuando introduzca una letra no de error
+        break;
+    
+     test[strlen(test)-1] = '\0';
 
-        printf("\n Introduce numero: ");
-        scanf("%d",&num2);
-
-        while(num!=num2)
-        {
-
-            printf("\n Introduce numero: ");
-            scanf("%d",&num2);
-        }
-       
-        printf("\n Has acertado! \n");
-
+     if ((adivinar < 1 || adivinar > 30) && (end != test + strlen(test))) //Hasta que no entre un int valido no cierra el bucle
+     {
+         printf("Input no valido\n");
+     }
+     
+      
+  } while ((adivinar < 1 || adivinar > 30) && (end != test + strlen(test)));
+ 
+   intentos++;//cuenta solo los intentos validos
+  if (adivinar == num)
+  {
+     printf("\nSi!! ¡Lo has adivinado! era el %d\n",num);
+     printf("\nLo has conseguido en %d intentos\n",intentos);
+     printf("\n+%d puntos\n\n",puntos);
+  }
+  else
+  {
+    printf("¡Ese no es, vuelve a intentarlo!\n");
+    puntos -=5;//Si el numero adivinado no es el correcto lo indica y penaliza con 5 puntos a los puntos totales
+  }  
+  
+} while (adivinar != num && intentos < 10);//termina al adivinar el numero o al llegar a los 10 intentos
+   
+  if (adivinar !=  num)
+  {
+      printf("No has conseguido adivinarlo, el numero era %d\n",num);
+      puntos = 0;
+  }
+    pass = 1;
 
     return puntos;
   }
