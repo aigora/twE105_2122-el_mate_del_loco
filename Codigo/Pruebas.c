@@ -17,13 +17,13 @@ typedef struct
 } cuestionario;
 
 //Funciones de las pruebas
-  // 'M' Mesa (linea 4-65)
-  // 'H' Ahorcado (linea 68-)
-  // 'D' CajaFuerte (linea )
-  // 'C' Calculo (linea )
-  // 'P' Preguntas (linea )
-  // 'N' Baul (linea )
-  // 'R' Random (linea )
+  // 'M' Mesa (linea 29-86)
+  // 'H' Ahorcado (linea 88-202)
+  // 'D' CajaFuerte (linea 204-278)
+  // 'N' Baul (linea 280-337 )
+  // 'P' Preguntas (linea 339-380)
+  // 'C' Calculo (linea 382-417)
+  // 'R' Random (linea 419-469)
 
 
 int Mesa(int *pass,int M)//Uso este puntero para contar que el jugador vaya haciendo todas las pruebas, asi sabremos si el jugador puede conseguir mas puntos
@@ -74,7 +74,7 @@ int Mesa(int *pass,int M)//Uso este puntero para contar que el jugador vaya haci
             printf("Seguro que te ayuda a salir de aqui\n");
             puntos = 150;
             printf("\n+150 puntos\n\n");
-            pass=1;
+            *pass+=1;
        }
         else
         printf("Aqui ya no hay nada interesante\n");
@@ -261,12 +261,12 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
                }
             
                printf("\n+%d puntos\n\n",puntos);
-               pass=1;
+              *pass+=1;
             }
             if (intentos == 3)
              {
                 printf("\nUps Parece que se ha cerrado para siempre, eso te pasa por jugartela y no buscar bien por el camarote\n\n");
-                pass=1;
+               *pass+=1;
              }
         }
         else
@@ -463,7 +463,7 @@ do
       printf("No has conseguido adivinarlo, el numero era %d\n",num);
       puntos = 0;
   }
-    pass = 1;
+    *pass+=1;
 
     return puntos;
   }
