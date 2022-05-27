@@ -201,12 +201,14 @@ int Ahorcado(int *pass)
   return puntos;
 }
 
-int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos se guarden aunque salgas de la prueba.
+int CajaFuerte(int intentos,int *try, int *pass)//uso el puntero intentos para que estos se guarden aunque salgas de la prueba.
 {
-    pass=0;
-   char probar,clave[7]="perlita",combinacion[10];
-    int i,error,j=0,intentos=0,puntos=0;
+    char probar,clave[7]="perlita",combinacion[10];
+    int i,error,j=0,puntos=0;
+    *try=0;
+
     printf("\nEs una especie de caja fuerte, y parece que tiene una combinación de letras para abrise...\n");
+      
     do
     {
         printf("\nSi quieres intentar adivinar la combinación introduce '1', en caso contrario introduce '0'\n");
@@ -224,6 +226,8 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
         
         if (probar == '1')
         {
+            
+            printf("intento nº: %d\n",intentos);
             printf("Introduce la combinación: ");
             scanf("%10s",combinacion);
             for ( i = 0; i < 7; i++)
@@ -237,9 +241,10 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
             if (error == 1 )//Si hay algun error lo comunica, da una pista y suma un intento.
             {
                 printf("No se ha abierto...Parece que esa no es la combinación adecuada.\n");
-                intentos++;
                 printf("Parece que si fallas más de tres veces se cerrara para siempre.\n");
                 printf("Prueba a buscar por el camarote, el capitan sparrow esconde muchos secretos\n");
+               *try+=1;
+               probar = '0';
             }
             else if(error == 0)
             {
@@ -247,31 +252,40 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
                printf("Has encontrado lo que queda del tesoro de Jack Sparrow, unos miseros %d puntos..\n",puntos);
                
                //Penaliza 10 puntos por intento fallido
-               if (intentos == 0)
+               if (intentos == 1)
                {
                    puntos = 95;
                }
-               else if (intentos == 1)
+               else if (intentos == 2)
                {
                    puntos= 85;
                }
-               else if (intentos == 2)
+               else if (intentos == 3)
                {
                    puntos = 75;
                }
             
                printf("\n+%d puntos\n\n",puntos);
+<<<<<<< Updated upstream
               *pass+=1;
+=======
+               *pass+=1;
+>>>>>>> Stashed changes
             }
-            if (intentos == 3)
+            if (intentos == 3 && error == 1)
              {
+<<<<<<< Updated upstream
                 printf("\nUps Parece que se ha cerrado para siempre, eso te pasa por jugartela y no buscar bien por el camarote\n\n");
                *pass+=1;
+=======
+                printf("\n\nUps Parece que se ha cerrado para siempre, eso te pasa por jugartela y no buscar bien por el camarote\n\n");
+                *pass+=1;
+>>>>>>> Stashed changes
              }
         }
         else
         {
-          printf("Vuelve cuando quieras intentarlo\n");
+          printf("Vuelve cuando quieras intentarlo.\n");
         }
     } while (probar == '1' && intentos < 3 && pass == 0);
     return puntos;
@@ -279,10 +293,9 @@ int CajaFuerte(int *intentos, int *pass)//uso el puntero intentos para que estos
 
 int Baul( int*pass, int B)
 {
-    int puntos =0, j;
+    int puntos =0;
     FILE *fcofre;
     char c, opcion;
-    B=0;
     fcofre = fopen("Cofre.txt","r");
     if (fcofre == NULL)
     {
@@ -305,7 +318,7 @@ int Baul( int*pass, int B)
         scanf(" %c", &opcion);
         if(opcion!= 'a' && opcion!= 'b')
         {
-            printf("\nEsa opcion no existe\n\n");
+            printf("\nEsa opción no existe\n\n");
         }
 
     } while (opcion != 'a' && opcion != 'b');
@@ -336,7 +349,7 @@ int Baul( int*pass, int B)
     return puntos;
 }
 
-int Test_pirata ()
+int Test_pirata (int *pass)
 {
     cuestionario vector[N];
   FILE *fpreguntas,*fopciones,*fsoluciones;
@@ -372,24 +385,24 @@ int Test_pirata ()
 
        i++;
     }
-
+   pass=1;
   fclose(fpreguntas);
   fclose(fopciones);
   fclose(fsoluciones);
     return x;
 }
 
-int Test_calculo ()
+int Test_calculo (int *pass)
 {
 
 
   cuestionario vector[N];
   FILE *fpreguntas,*fsoluciones;
-  int i = 0,x,n;
+  int i = 0,x=0,n;
 
 
   printf("\t\t\tTEST CALCULO\n");
-  x=0;
+
    fpreguntas = fopen("Preguntas_test_calculo.txt", "r");
   if (fpreguntas == NULL)
   {
@@ -410,7 +423,7 @@ int Test_calculo ()
 
        i++;
     }
-
+   pass=1;
   fclose(fpreguntas);
   fclose(fsoluciones);
     return x;
